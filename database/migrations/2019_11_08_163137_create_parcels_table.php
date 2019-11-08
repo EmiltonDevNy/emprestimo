@@ -14,12 +14,12 @@ class CreateParcelsTable extends Migration
     public function up()
     {
         Schema::create('parcels', function (Blueprint $table) {
-            $table->bigIncrements('parcel_id');
+            $table->bigIncrements('id');
             $table->string('descricao', 100);
             $table->integer('valor');
             $table->integer('qtd_parcela');
-            $table->unsignedBigInteger('loan_id');
-            $table->foreign('loan_id')->references('loan_id')->on('loans')->onDelete('cascade');
+            $table->bigInteger('loan_id')->unsigned();
+            $table->foreign('loan_id')->references('id')->on('loans')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -14,13 +14,13 @@ class CreateAdressesTable extends Migration
     public function up()
     {
         Schema::create('adresses', function (Blueprint $table) {
-            $table->bigIncrements('adress_id');
+            $table->bigIncrements('id');
             $table->string('numero', 10);
             $table->integer('cep');
             $table->string('complemento', 50);
             $table->string('rua', 50);
-            $table->unsignedBigInteger('client_id');
-            $table->foreign('client_id')->references('client_id')->on('users')->onDelete('cascade');
+            $table->bigInteger('client_id')->unsigned();
+            $table->foreign('client_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

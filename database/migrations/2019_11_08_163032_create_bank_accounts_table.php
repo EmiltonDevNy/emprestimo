@@ -14,7 +14,7 @@ class CreateBankAccountsTable extends Migration
     public function up()
     {
         Schema::create('bank_accounts', function (Blueprint $table) {
-            $table->bigIncrements('bank_account_id');
+            $table->bigIncrements('id');
             $table->string('favorecido', 50);
             $table->string('cpf_favorecido', 11);
             $table->string('banco', 100);
@@ -22,8 +22,8 @@ class CreateBankAccountsTable extends Migration
             $table->integer('conta');
             $table->integer('agencia');
             $table->string('tipo_conta', 50);
-            $table->unsignedBigInteger('client_id');
-            $table->foreign('client_id')->references('client_id')->on('users')->onDelete('cascade');
+            $table->bigInteger('client_id')->unsigned();
+            $table->foreign('client_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
