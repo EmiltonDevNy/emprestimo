@@ -174,17 +174,61 @@ return [
 
     'menu' => [
         [
-            'text' => 'search',
-            'search' => true,
-            'topnav' => true,
+            'text'        => 'Dashboard',
+            'url'         => 'admin',
+            'icon'        => 'fas fa-chart-line',
+            'label'       => 4,
+            'label_color' => 'success',
         ],
+
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text'    => 'Financeiro',
+            'icon'    => 'fas fa-dollar-sign',
+            'submenu' => [
+                [
+                    'text' => 'Saldo',
+                    'icon' => 'fas fa-wallet',
+                    'url'  => 'admin/balance',
+                ],
+                [
+                    'text' => 'Histórico',
+                    'icon' => 'fas fa-history',
+                    'url'  => 'admin/balance',
+                ],
+                [
+                    'text'    => 'level_one',
+                    'url'     => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'level_two',
+                            'url'  => '#',
+                        ],
+                        [
+                            'text'    => 'level_two',
+                            'url'     => '#',
+                            'submenu' => [
+                                [
+                                    'text' => 'level_three',
+                                    'url'  => '#',
+                                ],
+                                [
+                                    'text' => 'level_three',
+                                    'url'  => '#',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'level_one',
+                    'url'  => '#',
+                ],
+            ],
         ],
+
+        ['header' => 'Financeiro'],
         [
-            'text'        => 'home',
+            'text'        => 'Emprestimos',
             'url'         => 'admin',
             'icon'        => 'fas fa-hand-holding-usd',
             'label'       => 4,
