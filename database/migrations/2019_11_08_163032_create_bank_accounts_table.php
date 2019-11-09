@@ -22,8 +22,8 @@ class CreateBankAccountsTable extends Migration
             $table->integer('conta');
             $table->integer('agencia');
             $table->string('tipo_conta', 50);
-            $table->bigInteger('client_id')->unsigned();
-            $table->foreign('client_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

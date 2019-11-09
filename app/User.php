@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use AppzModels\Balance;
+use App\Models\BankAccount;
 
 class User extends Authenticatable
 {
@@ -38,8 +38,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function balance()
+    public function bank_accounts()
     {
-        return $this->hasOne(Balance::class);
+        return $this->hasMany(BankAccount::class);
     }
+
+
 }

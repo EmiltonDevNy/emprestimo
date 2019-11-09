@@ -17,8 +17,8 @@ class CreateBalancesTable extends Migration
             $table->bigIncrements('id');
             $table->string('descricao', 100);
             $table->bigInteger('saldo');
-            $table->bigInteger('client_id')->unsigned();
-            $table->foreign('client_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

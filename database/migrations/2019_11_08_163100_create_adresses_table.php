@@ -19,8 +19,8 @@ class CreateAdressesTable extends Migration
             $table->integer('cep');
             $table->string('complemento', 50);
             $table->string('rua', 50);
-            $table->bigInteger('client_id')->unsigned();
-            $table->foreign('client_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

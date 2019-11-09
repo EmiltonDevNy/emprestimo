@@ -17,8 +17,8 @@ class CreatePhonesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('numero');
             $table->string('tipo_contato');
-            $table->bigInteger('client_id')->unsigned();
-            $table->foreign('client_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

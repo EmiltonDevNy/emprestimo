@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\User;
+
 class BankAccountController extends Controller
 {
     /**
@@ -14,7 +16,16 @@ class BankAccountController extends Controller
      */
     public function index()
     {
-        //
+        $usuario_cpf = auth()->user()->cpf;
+        $user = User::where('cpf', $usuario_cpf)->get()->first();
+        // echo $user->nome;
+
+        $bank_accounts = $user->bank_accounts()->get();
+
+
+        foreach ($bank_accounts as $bank_account) {
+            echo "<hr>{$bank_account->favorecido} - {$bank_account->banco} - {$bank_account->conta}";
+        }
     }
 
     /**
