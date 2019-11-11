@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Balance;
+
 class ParcelController extends Controller
 {
     /**
@@ -14,7 +16,27 @@ class ParcelController extends Controller
      */
     public function index()
     {
-        //
+        //recupera o id do usuário atual
+        $usuario_id = auth()->user()->id;
+        //recupera as contas de empréstimo do usuário
+        $balances = Balance::where('user_id', $usuario_id)->get();
+
+        foreach ($balances as $balance) {
+            echo "<b>{$balance->id} - {$balance->saldo} - {$balance->descricao}</b>";
+            $loans = $balances->loans()->get();
+            dd($loans);
+            // foreach ($loans as $loan) {
+            //     echo "<hr>{$loan->juros} - {$loan->data_pagamento} - {$loan->descricao}";
+                // $parcels = $loans->parcels()->get();
+
+            //     foreach ($parcels as $parcel) {
+            //         echo "<hr>{$parcel->descricao} - {$parcel->valor} - {$parcel->qtd_parcela}";
+
+            //         echo "<hr>";
+            //     }
+            // }
+            echo "<hr>";
+        }
     }
 
     /**

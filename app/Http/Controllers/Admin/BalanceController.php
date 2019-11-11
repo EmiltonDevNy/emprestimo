@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\User;
 
 class BalanceController extends Controller
 {
@@ -14,7 +15,15 @@ class BalanceController extends Controller
      */
     public function index()
     {
-        return view('admin.balance.index');
+        $usuario_id = auth()->user()->id;
+        $user = User::where('id', $usuario_id)->get()->first();
+        $balances = $user->balances()->get();
+
+
+        foreach ($balances as $balance) {
+            echo "<hr>{$user->name} - {$balance->saldo} - {$balance->descricao}";
+        }
+        // return view('admin.balance.index');
     }
 
     /**

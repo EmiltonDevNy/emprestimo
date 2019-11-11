@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\User;
 
 class PhoneController extends Controller
 {
@@ -14,7 +15,15 @@ class PhoneController extends Controller
      */
     public function index()
     {
-        //
+        $usuario_id = auth()->user()->id;
+        $user = User::where('id', $usuario_id)->get()->first();
+
+        $phones = $user->phones()->get();
+
+
+        foreach ($phones as $phone) {
+            echo "<hr>{$phone->id} || {$phone->numero} || {$phone->tipo_contato}";
+        }
     }
 
     /**

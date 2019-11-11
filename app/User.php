@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Phone;
+use App\Models\Adress;
+use App\Models\Balance;
 use App\Models\BankAccount;
 
 class User extends Authenticatable
@@ -41,6 +44,18 @@ class User extends Authenticatable
     public function bank_accounts()
     {
         return $this->hasMany(BankAccount::class);
+    }
+    public function adresses()
+    {
+        return $this->hasMany(Adress::class);
+    }
+    public function phones()
+    {
+        return $this->hasMany(Phone::class);
+    }
+    public function balances()
+    {
+        return $this->hasMany(Balance::class);
     }
 
 

@@ -16,9 +16,8 @@ class BankAccountController extends Controller
      */
     public function index()
     {
-        $usuario_cpf = auth()->user()->cpf;
-        $user = User::where('cpf', $usuario_cpf)->get()->first();
-        // echo $user->nome;
+        $usuario_id = auth()->user()->id;
+        $user = User::where('id', $usuario_id)->get()->first();
 
         $bank_accounts = $user->bank_accounts()->get();
 
@@ -26,6 +25,10 @@ class BankAccountController extends Controller
         foreach ($bank_accounts as $bank_account) {
             echo "<hr>{$bank_account->favorecido} - {$bank_account->banco} - {$bank_account->conta}";
         }
+    }
+    public function pesquisa()
+    {
+        //
     }
 
     /**

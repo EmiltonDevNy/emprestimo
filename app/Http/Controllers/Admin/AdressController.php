@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\User;
 
 class AdressController extends Controller
 {
@@ -14,7 +15,15 @@ class AdressController extends Controller
      */
     public function index()
     {
-        //
+        $usuario_id = auth()->user()->id;
+        $user = User::where('id', $usuario_id)->get()->first();
+
+        $adresses = $user->adresses()->get();
+
+
+        foreach ($adresses as $adress) {
+            echo "<hr>{$adress->rua} - {$adress->numero} - {$adress->cep}";
+        }
     }
 
     /**
