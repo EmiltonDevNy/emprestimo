@@ -19,11 +19,11 @@ class LoanController extends Controller
     {
         $usuario_id = auth()->user()->id;
         $user = User::where('id', $usuario_id)->get()->first();
-        $balances = Balance::where('user_id', $usuario_id)->get();
+        $balances = Balance::where('user_id', $usuario_id)->with('loans')->get();
 
         foreach ($balances as $balance) {
             echo "<hr>{$user->name} - {$balance->saldo} - {$balance->descricao}";
-                $loans = $balance->loans()->get();
+                $loans = $balance->loans;
             foreach ($loans as $loan) {
                 echo "<hr>{$loan->juros} - {$loan->data_pagamento} - {$loan->descricao}";
             }

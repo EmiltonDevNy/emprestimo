@@ -22,12 +22,12 @@ class ParcelController extends Controller
         //consulta no banco de dados o registro do usuario
         $user = User::where('id', $usuario_id)->get()->first();
         //consulta a conta de empréstimo do usuário
-        $balances = Balance::where('user_id', $usuario_id)->get();
+        $balances = Balance::where('user_id', $usuario_id)->with('loans')->get();
         //listas 1 ou mais contas de empréstimo
         foreach ($balances as $balance) {
             echo "<hr>{$user->name} - {$balance->saldo} - {$balance->descricao}";
             //lista um ou mais empréstimos
-            $loans = $balance->loans()->get();
+            $loans = $balance->loans;
             foreach ($loans as $loan) {
                 echo "<hr>{$balance->id} - {$loan->data_pagamento} - {$loan->descricao}";
                 //lista uma ou mais parcelas do empréstimo em questão
