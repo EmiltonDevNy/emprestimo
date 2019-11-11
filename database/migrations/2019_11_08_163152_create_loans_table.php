@@ -15,10 +15,11 @@ class CreateLoansTable extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('data_emprestimo');
-            $table->date('data_pagamento');
-            $table->string('descricao', 100);
-            $table->integer('juros');
+            $table->date('date_loan');
+            $table->date('date_payment');
+            $table->string('name', 50);
+            $table->string('description', 100);
+            $table->double('interest', 5, 5);
             $table->bigInteger('balance_id')->unsigned();
             $table->foreign('balance_id')->references('id')->on('balances')->onDelete('cascade');
             $table->timestamps();

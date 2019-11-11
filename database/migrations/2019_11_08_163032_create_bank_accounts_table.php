@@ -15,13 +15,13 @@ class CreateBankAccountsTable extends Migration
     {
         Schema::create('bank_accounts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('favorecido', 50);
-            $table->string('cpf_favorecido', 11);
-            $table->string('banco', 100);
-            $table->integer('operacao');
-            $table->integer('conta');
-            $table->integer('agencia');
-            $table->string('tipo_conta', 50);
+            $table->string('favored', 50);
+            $table->string('cpf_favored', 11);
+            $table->string('bank', 100);
+            $table->integer('operation')->nullable();
+            $table->integer('account');
+            $table->integer('agency');
+            $table->enum('type_account', ['POUPANCA', 'CORRENTE', 'SALARIO']);
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

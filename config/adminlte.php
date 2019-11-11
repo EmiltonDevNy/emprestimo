@@ -177,7 +177,7 @@ return [
             'text'        => 'Dashboard',
             'url'         => 'admin',
             'icon'        => 'fas fa-chart-line',
-            'label'       => 4,
+            'label'       => '',
             'label_color' => 'success',
         ],
 
@@ -193,7 +193,28 @@ return [
                 [
                     'text' => 'Histórico',
                     'icon' => 'fas fa-history',
-                    'url'  => 'admin/balance',
+                    'url'  => 'admin/historic',
+                ],
+                [
+                    'text'        => 'Contratos',
+                    'url'         => 'admin/balance',
+                    'icon'        => 'far fa-file',
+                    'label'       => '',
+                    'label_color' => 'success',
+                ],
+                [
+                    'text'        => 'Emprestimos',
+                    'url'         => 'admin/loan',
+                    'icon'        => 'fas fa-hand-holding-usd',
+                    'label'       => '',
+                    'label_color' => 'success',
+                ],
+                [
+                    'text'        => 'Parcelas',
+                    'url'         => 'admin/parcel',
+                    'icon'        => 'fas fa-receipt',
+                    'label'       => '',
+                    'label_color' => 'success',
                 ],
                 [
                     'text'    => 'level_one',
@@ -228,10 +249,24 @@ return [
 
         ['header' => 'Financeiro'],
         [
+            'text'        => 'Contratos',
+            'url'         => 'admin/balance',
+            'icon'        => 'far fa-file',
+            'label'       => '',
+            'label_color' => 'success',
+        ],
+        [
             'text'        => 'Emprestimos',
-            'url'         => 'admin',
+            'url'         => 'admin/loan',
             'icon'        => 'fas fa-hand-holding-usd',
-            'label'       => 4,
+            'label'       => '',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Parcelas',
+            'url'         => 'admin/parcel',
+            'icon'        => 'fas fa-receipt',
+            'label'       => '',
             'label_color' => 'success',
         ],
         ['header' => 'account_settings'],

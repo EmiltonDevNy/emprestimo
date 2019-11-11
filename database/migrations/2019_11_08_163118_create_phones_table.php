@@ -15,8 +15,9 @@ class CreatePhonesTable extends Migration
     {
         Schema::create('phones', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('numero');
-            $table->string('tipo_contato');
+            $table->string('content',50);
+            $table->enum('type_contact', ['PRINCIPAL', 'CASA', 'CELULAR', 'WHATSAPP', 'EMAIL']);
+            $table->string('description',100);
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

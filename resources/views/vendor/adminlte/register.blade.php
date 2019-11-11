@@ -32,6 +32,88 @@
                         </span>
                     @endif
                 </div>
+
+                <div class="input-group mb-3">
+                    <input  type="text" name="data_nascimento" class="form-control {{ $errors->has('dtnasc') ? 'is-invalid' : '' }}" value="{{ old('dtnasc') }}"
+                           placeholder="Data de nascimento">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="far fa-calendar-alt"></span>
+                        </div>
+                    </div>
+
+                    @if ($errors->has('dtnasc'))
+                        <div class="invalid-feedback">
+                            <strong>{{ $errors->first('dtnasc') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" name="cpf" class="form-control {{ $errors->has('cpf') ? 'is-invalid' : '' }}" value="{{ old('cpf') }}"
+                           placeholder="Insira seu cpf">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-id-card"></span>
+                        </div>
+                    </div>
+
+                    @if ($errors->has('cpf'))
+                        <div class="invalid-feedback">
+                            <strong>{{ $errors->first('cpf') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" name="cidade_nascimento" class="form-control {{ $errors->has('city_nasc') ? 'is-invalid' : '' }}" value="{{ old('city_nasc') }}"
+                           placeholder="Cidade onde nasceu">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+
+                    @if ($errors->has('city_nasc'))
+                        <div class="invalid-feedback">
+                            <strong>{{ $errors->first('city_nasc') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" name="estado_nascimento" class="form-control {{ $errors->has('state_nasc') ? 'is-invalid' : '' }}" value="{{ old('state_nasc') }}"
+                           placeholder="Estado onde nasceu">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+
+                    @if ($errors->has('state_nasc'))
+                        <div class="invalid-feedback">
+                            <strong>{{ $errors->first('state_nasc') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" name="pais_nascimento" class="form-control {{ $errors->has('country_nasc') ? 'is-invalid' : '' }}" value="{{ old('country_nasc') }}"
+                           placeholder="País onde nasceu">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+
+                    @if ($errors->has('country_nasc'))
+                        <div class="invalid-feedback">
+                            <strong>{{ $errors->first('country_nasc') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
+
+
+
+
+
                 <div class="input-group mb-3">
                     <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" value="{{ old('email') }}"
                            placeholder="{{ __('adminlte::adminlte.email') }}">

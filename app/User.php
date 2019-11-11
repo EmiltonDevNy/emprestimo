@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Historic;
 use App\Models\Phone;
 use App\Models\Adress;
 use App\Models\Balance;
@@ -20,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'dtnasc', 'cpf', 'city_nasc', 'state_nasc',  'country_nasc'
     ];
 
     /**
@@ -56,6 +57,10 @@ class User extends Authenticatable
     public function balances()
     {
         return $this->hasMany(Balance::class);
+    }
+    public function historics()
+    {
+        return $this->hasMany(Historic::class);
     }
 
 

@@ -15,10 +15,10 @@ class CreateAdressesTable extends Migration
     {
         Schema::create('adresses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('numero', 10);
+            $table->string('number', 10);
             $table->integer('cep');
-            $table->string('complemento', 50);
-            $table->string('rua', 50);
+            $table->string('complement', 50)->nullable();
+            $table->string('street', 50);
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

@@ -15,9 +15,10 @@ class CreateParcelsTable extends Migration
     {
         Schema::create('parcels', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('descricao', 100);
-            $table->integer('valor');
-            $table->integer('qtd_parcela');
+            $table->string('name', 50);
+            $table->string('description', 100)->nullable();
+            $table->double('amount', 10, 2);
+            $table->integer('qtd_parcel');
             $table->bigInteger('loan_id')->unsigned();
             $table->foreign('loan_id')->references('id')->on('loans')->onDelete('cascade');
             $table->timestamps();
