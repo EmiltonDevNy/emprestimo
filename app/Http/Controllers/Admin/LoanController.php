@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Balance;
-use App\Models\Loan;
 use App\User;
 
 class LoanController extends Controller
@@ -21,14 +20,10 @@ class LoanController extends Controller
         $usuario_id = auth()->user()->id;
         $user = User::where('id', $usuario_id)->get()->first();
         $balances = Balance::where('user_id', $usuario_id)->get();
-        // $loans = Loan::where('balance_id', '2')->get();
-        // dd($loans);
+
         foreach ($balances as $balance) {
             echo "<hr>{$user->name} - {$balance->saldo} - {$balance->descricao}";
-
-            //     $loans = $balances->loans()->get();
-            $loans = Loan::where('balance_id', $balance->id)->get();
-            // dd($balances);
+                $loans = $balance->loans()->get();
             foreach ($loans as $loan) {
                 echo "<hr>{$loan->juros} - {$loan->data_pagamento} - {$loan->descricao}";
             }

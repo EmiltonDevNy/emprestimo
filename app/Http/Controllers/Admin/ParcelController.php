@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Balance;
+use App\User;
 
 class ParcelController extends Controller
 {
@@ -16,25 +17,25 @@ class ParcelController extends Controller
      */
     public function index()
     {
-        //recupera o id do usuário atual
+        //recupera o id do usuario logado
         $usuario_id = auth()->user()->id;
-        //recupera as contas de empréstimo do usuário
+        //consulta no banco de dados o registro do usuario
+        $user = User::where('id', $usuario_id)->get()->first();
+        //consulta a conta de empréstimo do usuário
         $balances = Balance::where('user_id', $usuario_id)->get();
-
+        //listas 1 ou mais contas de empréstimo
         foreach ($balances as $balance) {
-            echo "<b>{$balance->id} - {$balance->saldo} - {$balance->descricao}</b>";
-            $loans = $balances->loans()->get();
-            dd($loans);
-            // foreach ($loans as $loan) {
-            //     echo "<hr>{$loan->juros} - {$loan->data_pagamento} - {$loan->descricao}";
-                // $parcels = $loans->parcels()->get();
-
-            //     foreach ($parcels as $parcel) {
-            //         echo "<hr>{$parcel->descricao} - {$parcel->valor} - {$parcel->qtd_parcela}";
-
-            //         echo "<hr>";
-            //     }
-            // }
+            echo "<hr>{$user->name} - {$balance->saldo} - {$balance->descricao}";
+            //lista um ou mais empréstimos
+            $loans = $balance->loans()->get();
+            foreach ($loans as $loan) {
+                echo "<hr>{$balance->id} - {$loan->data_pagamento} - {$loan->descricao}";
+                //lista uma ou mais parcelas do empréstimo em questão
+                $parcels = $loan->parcels()->get();
+                foreach ($parcels as $parcel) {
+                    echo "<hr>{$loan->id} - {$parcel->qtd_parcela} - {$parcel->descricao}";
+                }
+            }
             echo "<hr>";
         }
     }
