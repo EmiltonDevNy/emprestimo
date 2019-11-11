@@ -15,15 +15,15 @@ class BalanceController extends Controller
      */
     public function index()
     {
-        $usuario_id = auth()->user()->id;
-        $user = User::where('id', $usuario_id)->get()->first();
+        // $usuario_id = auth()->user()->id;
+        $user = User::where('id', auth()->user()->id)->get()->first();
         $balances = $user->balances()->get();
 
 
-        foreach ($balances as $balance) {
-            echo "<hr>{$user->name} - {$balance->saldo} - {$balance->descricao}";
-        }
-        // return view('admin.balance.index');
+        // foreach ($balances as $balance) {
+        //     echo "<hr>{$user->name} - {$balance->saldo} - {$balance->descricao}";
+        // }
+        return view('admin.balance.index', compact('balances'));
     }
 
     /**

@@ -16,15 +16,16 @@ class BankAccountController extends Controller
      */
     public function index()
     {
-        $usuario_id = auth()->user()->id;
-        $user = User::where('id', $usuario_id)->get()->first();
-
+        // $usuario_id = auth()->user()->id;
+        $user = User::where('id', auth()->user()->id)->get()->first();
         $bank_accounts = $user->bank_accounts()->get();
 
 
-        foreach ($bank_accounts as $bank_account) {
-            echo "<hr>{$bank_account->favorecido} - {$bank_account->banco} - {$bank_account->conta}";
-        }
+        // foreach ($bank_accounts as $bank_account) {
+        //     echo "<hr>{$bank_account->favorecido} - {$bank_account->banco} - {$bank_account->conta}";
+        // }
+
+        return view('admin.bank.index', compact('bank_accounts'));
     }
     public function pesquisa()
     {

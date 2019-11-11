@@ -15,15 +15,15 @@ class AdressController extends Controller
      */
     public function index()
     {
-        $usuario_id = auth()->user()->id;
-        $user = User::where('id', $usuario_id)->get()->first();
-
+        // $usuario_id = auth()->user()->id;
+        $user = User::where('id', auth()->user()->id)->get()->first();
         $adresses = $user->adresses()->get();
 
 
-        foreach ($adresses as $adress) {
-            echo "<hr>{$adress->rua} - {$adress->numero} - {$adress->cep}";
-        }
+        // foreach ($adresses as $adress) {
+        //     echo "<hr>{$adress->rua} - {$adress->numero} - {$adress->cep}";
+        // }
+        return view('admin.adress.index', compact('adresses'));
     }
 
     /**

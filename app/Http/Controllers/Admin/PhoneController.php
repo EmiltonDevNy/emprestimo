@@ -15,15 +15,16 @@ class PhoneController extends Controller
      */
     public function index()
     {
-        $usuario_id = auth()->user()->id;
-        $user = User::where('id', $usuario_id)->get()->first();
-
+        // $usuario_id = auth()->user()->id;
+        $user = User::where('id', auth()->user()->id)->get()->first();
         $phones = $user->phones()->get();
 
 
-        foreach ($phones as $phone) {
-            echo "<hr>{$phone->id} || {$phone->numero} || {$phone->tipo_contato}";
-        }
+        // foreach ($phones as $phone) {
+        //     echo "<hr>{$phone->id} || {$phone->numero} || {$phone->tipo_contato}";
+        // }
+
+        return view('admin.phone.index', compact('phones'));
     }
 
     /**

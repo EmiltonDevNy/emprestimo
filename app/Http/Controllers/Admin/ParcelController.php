@@ -18,11 +18,11 @@ class ParcelController extends Controller
     public function index()
     {
         //recupera o id do usuario logado
-        $usuario_id = auth()->user()->id;
+        // $usuario_id = auth()->user()->id;
         //consulta no banco de dados o registro do usuario
-        $user = User::where('id', $usuario_id)->get()->first();
+        $user = User::where('id', auth()->user()->id)->get()->first();
         //consulta a conta de empréstimo do usuário
-        $balances = Balance::where('user_id', $usuario_id)->with('loans')->get();
+        $balances = Balance::where('user_id', $user->id)->with('loans')->get();
         //listas 1 ou mais contas de empréstimo
         foreach ($balances as $balance) {
             echo "<hr>{$user->name} - {$balance->saldo} - {$balance->descricao}";
@@ -38,6 +38,8 @@ class ParcelController extends Controller
             }
             echo "<hr>";
         }
+        //ver uma forma de passar parcelas tbm, dentro do relacionamento
+        return view('admin.parcel.index', compact('balances'));
     }
 
     /**
