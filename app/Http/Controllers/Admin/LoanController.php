@@ -5,46 +5,24 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Loan;
 use App\Models\Balance;
 use App\User;
 
 class LoanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
-        $user = User::where('id', auth()->user()->id)->get()->first();
-        $balances = Balance::where('user_id', $user->id)->with('loans')->get();
-
-        // dd($loans);
-        // dd($balances);
-
-        // foreach ($balances as $balance) {
-        //     echo "<hr>{$user->name} <-> {$balance->amount} <-> {$balance->description}";
-        //         $loans = $balance->loans;
-        //     foreach ($loans as $loan) {
-        //         echo "<hr>{$loan->interest} <-> {$loan->date_payment} <-> {$loan->name}";
-        //         foreach ($loan->parcels as $parcel) {
-        //             echo "<hr>{$parcel->name} <-> {$parcel->description} <-> {$parcel->amount}";
-        //         }
-        //     }
-        //     echo "<hr>";
-        // }
-
-
-
-        return view('admin.loan.index', compact('balances','user'));
+        $user = User::where('id', auth()->user()->id)
+                        ->get()
+                        ->first();
+        $balances = Loan::where('balance_id', $request->id)
+                            ->get();
+        $conta = Balance::where('id', $request->id)
+                            ->first();
+        return view('admin.loan.index', compact('balances','user', 'conta'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
