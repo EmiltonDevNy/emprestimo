@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\Balance;
+use App\Models\Parcel;
 use App\Models\Loan;
 use App\User;
 
@@ -18,44 +18,18 @@ class ParcelController extends Controller
      */
     public function index(Request $request)
     {
-        // dd($request->id);
-        //recupera o id do usuario logado
-        // $usuario_id = auth()->user()->id;
+        $user = User::where('id', auth()->user()->id)
+            ->get()
+            ->first();
+        $parcels = Parcel::where('loan_id', $request->id)
+            ->get();
+        $conta = Loan::where('id', $request->id)
+            ->first();
 
-        //consulta no banco de dados o registro do usuario
-        $user = User::where('id', auth()->user()->id)->get()->first();
-        //consulta a conta de empréstimo do usuário
-        $loans = Loan::where('user_id', $user->id)
-                            ->where('balance_id', $request->id)
-                            ->with('loans')
-                            ->get();
-
-        dd($loans);
-
-        // //listas 1 ou mais contas de empréstimo
-        // foreach ($balances as $balance) {
-        //     echo "<hr>{$user->name} - {$balance->amount} - {$balance->description}";
-        //     //lista um ou mais empréstimos
-        //     $loans = $balance->loans;
-        //     foreach ($loans as $loan) {
-        //         echo "<hr>{$balance->id} - {$loan->date_payment} - {$loan->description}";
-        //         //lista uma ou mais parcelas do empréstimo em questão
-        //         $parcels = $loan->parcels()->get();
-        //         foreach ($parcels as $parcel) {
-        //             echo "<hr>{$loan->id} - {$parcel->qtd_parcel} - {$parcel->description}";
-        //         }
-        //     }
-        //     echo "<hr>";
-        // }
-        //ver uma forma de passar parcelas tbm, dentro do relacionamento
-        return view('admin.parcel.index', compact('balances'));
+        return view('admin.parcel.index', compact('parcels', 'conta', 'user'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
