@@ -9,6 +9,7 @@
 @stop
 
 @section('content')
+<a type="button" onclick="history.go(-1);" class="voltar" ><i class="fas fa-arrow-circle-left fa-lg">Voltar</i></a>
 <div class="card">
     <div class="card-header border-transparent">
         <h3 class="card-title">Suas Parcelas</h3>

@@ -10,7 +10,7 @@
 
 @section('content')
 <h2 class="text-center">{{$conta->name}}</h2>
-<a type="button" data-route="{{route('admin.balance')}}" ><i class="fas fa-arrow-circle-left fa-2x"></i></a>
+<a type="button" onclick="history.go(-1);" class="voltar" ><i class="fas fa-arrow-circle-left fa-lg">Voltar</i></a>
 @forelse ($balances as $loan)
 <div class="box">
     <div class="box-header">
@@ -55,7 +55,6 @@
             }).append(`
                     <input type="hidden" name="id" value="${id}">`).submit();
         });
-
     });
 </script>
 @stop
