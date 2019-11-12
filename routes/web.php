@@ -8,7 +8,9 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
     Route::get('adress', 'AdressController@index')->name('admin.adress');
     Route::get('phone', 'PhoneController@index')->name('admin.phone');
     Route::get('loan', 'LoanController@index')->name('admin.loan');
+    Route::post('loan', 'LoanController@index')->name('admin.loan');
     Route::get('parcel', 'ParcelController@index')->name('admin.parcel');
+    Route::post('parcel', 'ParcelController@index')->name('admin.parcel');
     Route::get('historic', 'HistoricController@index')->name('admin.historic');
 });
 

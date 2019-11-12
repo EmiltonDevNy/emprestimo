@@ -15,22 +15,29 @@ class LoanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $usuario_id = auth()->user()->id;
         $user = User::where('id', auth()->user()->id)->get()->first();
         $balances = Balance::where('user_id', $user->id)->with('loans')->get();
 
+        // dd($loans);
+        // dd($balances);
+
         // foreach ($balances as $balance) {
-        //     echo "<hr>{$user->name} - {$balance->saldo} - {$balance->descricao}";
+        //     echo "<hr>{$user->name} <-> {$balance->amount} <-> {$balance->description}";
         //         $loans = $balance->loans;
         //     foreach ($loans as $loan) {
-        //         echo "<hr>{$loan->juros} - {$loan->data_pagamento} - {$loan->descricao}";
+        //         echo "<hr>{$loan->interest} <-> {$loan->date_payment} <-> {$loan->name}";
+        //         foreach ($loan->parcels as $parcel) {
+        //             echo "<hr>{$parcel->name} <-> {$parcel->description} <-> {$parcel->amount}";
+        //         }
         //     }
         //     echo "<hr>";
         // }
 
-        return view('admin.loan.index', compact('balances'));
+
+
+        return view('admin.loan.index', compact('balances','user'));
     }
 
     /**

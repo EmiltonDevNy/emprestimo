@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Balance;
+use App\Models\Loan;
 use App\User;
 
 class ParcelController extends Controller
@@ -15,29 +16,37 @@ class ParcelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // dd($request->id);
         //recupera o id do usuario logado
         // $usuario_id = auth()->user()->id;
+
         //consulta no banco de dados o registro do usuario
         $user = User::where('id', auth()->user()->id)->get()->first();
         //consulta a conta de empréstimo do usuário
-        $balances = Balance::where('user_id', $user->id)->with('loans')->get();
-        //listas 1 ou mais contas de empréstimo
-        foreach ($balances as $balance) {
-            echo "<hr>{$user->name} - {$balance->saldo} - {$balance->descricao}";
-            //lista um ou mais empréstimos
-            $loans = $balance->loans;
-            foreach ($loans as $loan) {
-                echo "<hr>{$balance->id} - {$loan->data_pagamento} - {$loan->descricao}";
-                //lista uma ou mais parcelas do empréstimo em questão
-                $parcels = $loan->parcels()->get();
-                foreach ($parcels as $parcel) {
-                    echo "<hr>{$loan->id} - {$parcel->qtd_parcela} - {$parcel->descricao}";
-                }
-            }
-            echo "<hr>";
-        }
+        $loans = Loan::where('user_id', $user->id)
+                            ->where('balance_id', $request->id)
+                            ->with('loans')
+                            ->get();
+
+        dd($loans);
+
+        // //listas 1 ou mais contas de empréstimo
+        // foreach ($balances as $balance) {
+        //     echo "<hr>{$user->name} - {$balance->amount} - {$balance->description}";
+        //     //lista um ou mais empréstimos
+        //     $loans = $balance->loans;
+        //     foreach ($loans as $loan) {
+        //         echo "<hr>{$balance->id} - {$loan->date_payment} - {$loan->description}";
+        //         //lista uma ou mais parcelas do empréstimo em questão
+        //         $parcels = $loan->parcels()->get();
+        //         foreach ($parcels as $parcel) {
+        //             echo "<hr>{$loan->id} - {$parcel->qtd_parcel} - {$parcel->description}";
+        //         }
+        //     }
+        //     echo "<hr>";
+        // }
         //ver uma forma de passar parcelas tbm, dentro do relacionamento
         return view('admin.parcel.index', compact('balances'));
     }
