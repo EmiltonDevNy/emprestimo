@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Balance;
 use Illuminate\Http\Request;
 use App\User;
+use Gate;
 
 class BalanceController extends Controller
 {
@@ -78,7 +80,13 @@ class BalanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $balance = Balance::find($id);
+
+        if( Gate::denies('update-balance', $balance))
+            abort(403, 'Não autorizado');
+        // $this->authorize('update-balances', $balance);
+
+        return view('admin.balance.update', compact('balance'));
     }
 
     /**
