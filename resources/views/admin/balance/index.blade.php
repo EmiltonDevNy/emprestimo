@@ -5,7 +5,9 @@
 @section('title', 'Saldo')
 
 @section('content_header')
-<h1>Saldo</h1>
+<h1 ><i class="fas fa-money-bill-wave"></i> Saldo</i></h1>
+<h5><a type="button" data-route="{{route('balance.create')}}" class="float-right">Adicionar Conta <i class="fas fa-plus-circle fa-lg"></i></a></h5><p>
+
 
 <ol class="breadcrumb">
     {{-- <li> <a href="">Dashboard</a></li>
@@ -16,10 +18,10 @@
 @section('content')
 @forelse ($balances as $balance)
 <div class="box">
-    {{-- <div class="box-header">
-            <a href="" class="btn btn-primary">Rec</a>
-            <a href="" class="btn btn-primary"></a>
-        </div> --}}
+    <div class="box-header">
+        <a type="button" data-value="{{$balance->id}}" ><i class="fas fa-trash-alt fa-2x"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            <a type="button" data-value="{{$balance->id}}" ><i class="fas fa-edit fa-2x"></i></a>
+        </div>
     <div class="box-body">
         <div class="small-box bg-success">
             <div class="inner">

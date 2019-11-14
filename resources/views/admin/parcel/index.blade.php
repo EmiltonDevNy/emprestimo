@@ -5,24 +5,12 @@
 @section('title', 'Painel')
 
 @section('content_header')
-<h1>Parcelas</h1>
+<h1><i class="fas fa-calendar-alt"> Parcelas</i></h1>
 @stop
 
 @section('content')
-<a type="button" onclick="history.go(-1);" class="voltar" ><i class="fas fa-arrow-circle-left fa-lg">Voltar</i></a>
+<a type="button" onclick="history.go(-1);" class="voltar"><i class="fas fa-arrow-circle-left fa-lg">Voltar</i></a>
 <div class="card">
-    <div class="card-header border-transparent">
-        <h3 class="card-title">Suas Parcelas</h3>
-
-        <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-    </div>
     <!-- /.card-header -->
     <div class="card-body p-0">
         <div class="table-responsive">

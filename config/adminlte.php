@@ -196,13 +196,6 @@ return [
                     'url'  => 'admin/historic',
                 ],
                 [
-                    'text'        => 'Emprestimos',
-                    'url'         => 'admin/balance',
-                    'icon'        => 'fas fa-hand-holding-usd',
-                    'label'       => '',
-                    'label_color' => 'success',
-                ],
-                [
                     'text'        => 'Contratos',
                     'url'         => 'admin/loan',
                     'icon'        => 'far fa-file',
@@ -247,25 +240,11 @@ return [
             ],
         ],
 
-        ['header' => 'Financeiro'],
+        ['header' => 'Administração'],
         [
-            'text'        => 'Contratos',
-            'url'         => 'admin/balance',
-            'icon'        => 'far fa-file',
-            'label'       => '',
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => 'Emprestimos',
-            'url'         => 'admin/loan',
-            'icon'        => 'fas fa-hand-holding-usd',
-            'label'       => '',
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => 'Parcelas',
-            'url'         => 'admin/parcel',
-            'icon'        => 'fas fa-receipt',
+            'text'        => 'Usuários',
+            'url'         => 'admin',
+            'icon'        => 'fas fa-users',
             'label'       => '',
             'label_color' => 'success',
         ],
