@@ -15,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.user.index');
+
+        $user = User::get();
+        return view('admin.users.index', compact('user'));
     }
 
     /**
@@ -47,7 +49,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.users.show');
     }
 
     /**
@@ -58,7 +60,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.users.edit');
     }
 
     /**
@@ -81,6 +83,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return view('admin.users.index');
     }
 }

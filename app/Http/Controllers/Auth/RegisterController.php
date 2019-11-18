@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/admin/users';
     // protected $redirectTo = '/admin';
 
     /**
@@ -50,6 +50,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
             'data_nascimento' => ['required'],
             'cpf' => ['required', 'string', 'max:255'],
@@ -70,8 +71,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $dataFormatada = $data['data_nascimento'];
+        $d = explode("/", $dataFormatada);
+        $dataFormatada = $d[2] . "-" . $d[1] . "-" . $d[0];
+
         return User::create([
-            'dtnasc'        => $data['data_nascimento'],
+            'dtnasc'        => $dataFormatada,
             'cpf'           => $data['cpf'],
             'city_nasc'     => $data['cidade_nascimento'],
             'state_nasc'    => $data['estado_nascimento'],

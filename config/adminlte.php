@@ -191,14 +191,9 @@ return [
                     'url'  => 'admin/balance',
                 ],
                 [
-                    'text' => 'Histórico',
-                    'icon' => 'fas fa-history',
-                    'url'  => 'admin/historic',
-                ],
-                [
                     'text'        => 'Contratos',
                     'url'         => 'admin/loan',
-                    'icon'        => 'far fa-file',
+                    'icon'        => 'fas fa-file-signature',
                     'label'       => '',
                     'label_color' => 'success',
                 ],
@@ -210,32 +205,9 @@ return [
                     'label_color' => 'success',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Histórico',
+                    'icon' => 'fas fa-history',
+                    'url'  => 'admin/historic',
                 ],
             ],
         ],
@@ -243,7 +215,7 @@ return [
         ['header' => 'Administração'],
         [
             'text'        => 'Usuários',
-            'url'         => 'admin',
+            'url'         => 'admin/users',
             'icon'        => 'fas fa-users',
             'label'       => '',
             'label_color' => 'success',

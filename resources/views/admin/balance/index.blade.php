@@ -6,7 +6,7 @@
 
 @section('content_header')
 <h1 ><i class="fas fa-money-bill-wave"></i> Saldo</i></h1>
-<h5><a type="button" data-route="{{route('balance.create')}}" class="float-right">Adicionar Conta <i class="fas fa-plus-circle fa-lg"></i></a></h5><p>
+<h5><a type="button" data-route="{{route('users.create')}}" class="float-right">Adicionar Usuário <i class="fas fa-plus-circle fa-lg"></i></a></h5><p>
 
 
 <ol class="breadcrumb">

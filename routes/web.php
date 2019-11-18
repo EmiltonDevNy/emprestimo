@@ -13,7 +13,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
     Route::get('parcel', 'ParcelController@index')->name('admin.parcel');
     Route::post('parcel', 'ParcelController@index')->name('admin.parcel');
     Route::get('historic', 'HistoricController@index')->name('admin.historic');
-    Route::resource('user', 'UserController');
+    Route::resource('users', 'UserController');
 });
 
 Route::get('/', 'Site\SiteController@index')->name('home');

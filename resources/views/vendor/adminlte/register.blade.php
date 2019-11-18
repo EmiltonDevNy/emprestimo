@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    <input  type="text" name="data_nascimento" class="form-control {{ $errors->has('dtnasc') ? 'is-invalid' : '' }}" value="{{ old('dtnasc') }}"
+                    <input  type="text" name="data_nascimento" class="form-control date {{ $errors->has('dtnasc') ? 'is-invalid' : '' }}" value="{{ old('dtnasc') }}"
                            placeholder="Data de nascimento">
                     <div class="input-group-append">
                         <div class="input-group-text">
@@ -49,7 +49,7 @@
                     @endif
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" name="cpf" class="form-control {{ $errors->has('cpf') ? 'is-invalid' : '' }}" value="{{ old('cpf') }}"
+                    <input type="text" name="cpf" class="form-control cpf {{ $errors->has('cpf') ? 'is-invalid' : '' }}" value="{{ old('cpf') }}"
                            placeholder="Insira seu cpf">
                     <div class="input-group-append">
                         <div class="input-group-text">
@@ -60,6 +60,35 @@
                     @if ($errors->has('cpf'))
                         <div class="invalid-feedback">
                             <strong>{{ $errors->first('cpf') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" name="pais_nascimento" class="form-control {{ $errors->has('country_nasc') ? 'is-invalid' : '' }}" value="Brasil"
+                           placeholder="País onde nasceu">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+
+                    @if ($errors->has('country_nasc'))
+                        <div class="invalid-feedback">
+                            <strong>{{ $errors->first('country_nasc') }}</strong>
+                        </span>
+                    @endif
+                </div>
+                <div class="input-group mb-3">
+                    <select id="estados" name="estado_nascimento" class="form-control {{ $errors->has('state_nasc') ? 'is-invalid' : '' }}" value="{{ old('state_nasc') }}"></select>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+
+                    @if ($errors->has('state_nasc'))
+                        <div class="invalid-feedback">
+                            <strong>{{ $errors->first('state_nasc') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -78,36 +107,7 @@
                         </span>
                     @endif
                 </div>
-                <div class="input-group mb-3">
-                    <input type="text" name="estado_nascimento" class="form-control {{ $errors->has('state_nasc') ? 'is-invalid' : '' }}" value="{{ old('state_nasc') }}"
-                           placeholder="Estado onde nasceu">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-user"></span>
-                        </div>
-                    </div>
 
-                    @if ($errors->has('state_nasc'))
-                        <div class="invalid-feedback">
-                            <strong>{{ $errors->first('state_nasc') }}</strong>
-                        </span>
-                    @endif
-                </div>
-                <div class="input-group mb-3">
-                    <input type="text" name="pais_nascimento" class="form-control {{ $errors->has('country_nasc') ? 'is-invalid' : '' }}" value="{{ old('country_nasc') }}"
-                           placeholder="País onde nasceu">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-user"></span>
-                        </div>
-                    </div>
-
-                    @if ($errors->has('country_nasc'))
-                        <div class="invalid-feedback">
-                            <strong>{{ $errors->first('country_nasc') }}</strong>
-                        </span>
-                    @endif
-                </div>
 
 
 
@@ -172,6 +172,30 @@
 
 @section('adminlte_js')
     <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
     @stack('js')
     @yield('js')
+    <script>
+        var $selectEstados = $('#estados');
+
+        $.getJSON('../resources/views/layouts/JSON/Estados.JSON', function (data) {
+            console.log(data);
+            $selectEstados.html('');
+
+            for (var i = 0; i < data['estados'].length; i++) {
+                $selectEstados.append('<option id="' + data['estados'][i]['ID'] + '">' + data['estados'][i]['Nome'] +'</option>')
+
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function($){
+            $('.date').mask('00/00/0000');
+            $('.cep').mask('00000-000');
+            $('.phone_with_ddd').mask('(00) 00000-0000');
+            $('.cpf').mask('000.000.000-00', {reverse: true});
+            $('.cnpj').mask('00.000./0000-00', {reverse: true});
+            $('.percent').mask('##0,00%', {reverse: true});
+        });
+    </script>
 @stop
